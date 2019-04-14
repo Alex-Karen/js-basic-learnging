@@ -47,3 +47,17 @@ js引入
 js基础语法
 
     变量(variable)
+
+    变量名必须以英文字母、_、$ 开头，变量名可以包括英文字母、_、$、数字，不可以用系统的关键字、保留字作为变量名
+
+    数据类型
+
+        原始值 Number String Boolean Undefined Null
+
+            stack(栈) first in last off
+
+        引用值 Array Function Object
+
+            heap(堆)
+
+        js语法错误会引发后续代码终止，但不会影响其它js代码块
