@@ -7,7 +7,7 @@ function a() {
     console.log(a)
 }
 var glob = 100;
-// a();
+a();
 /*
     a defined a.[[scope]] --> 0:GO {}
     a doing   a.[[scope]] --> 0:AO {}   1:GO {}
@@ -23,8 +23,8 @@ function a() {
 }
 var glob = 100;
 var demo = a();
-// demo();//101
-// demo();//102
+demo();//101
+demo();//102
 
 function test() {
     var num = 100;
@@ -39,31 +39,60 @@ function test() {
     return [a, b];
 }
 var testArr = test();
-// testArr[0]();
-// testArr[1]();
+testArr[0]();
+testArr[1]();
 
 //立即执行函数
 (function run() {
     var abc = 1;
     console.log(abc);
 }());//建议用这种方式
-// (function run() {
-//     console.log('hello world');
-// }())
-// + function run() {
-//     console.log('run')
-// }()
-// - function run() {
-//     console.log('run')
-// }()
-// ! function run() {
-//     console.log('run')
-// }()
-// var test = function(n) {
-//     console.log(n);
-//     return n; 
-// }(1);
+(function run() {
+    console.log('hello world');
+}())
++ function run() {
+    console.log('run')
+}()
+- function run() {
+    console.log('run')
+}()
+! function run() {
+    console.log('run')
+}()
+var test = function(n) {
+    console.log(n);
+    return n; 
+}(1)
 //不报错 拆分换行(1, 2, 3, 4);
-// function hello( a, b, c, d ) {
-//     console.log( a + b + c + d );
-// }( 1, 2, 3, 4 );
+function hello( a, b, c, d ) {
+    console.log( a + b + c + d );
+}( 1, 2, 3, 4 );
+
+function clickLi() {
+    var arr = [];
+    for (var i = 0; i < 10; i++) {
+        (function (j) {
+            arr[j] = function() {
+                console.log(j);                
+            }
+        }(i));
+    }
+    return arr;
+}
+var myArr = clickLi();
+myArr[9]();
+var x = 1;
+if (function f() {}) {
+    x += typeof f
+}
+console.log(x);
+
+var f = (
+    function a() {
+        return '1';
+    },
+    function b() {
+        return 2;
+    }
+)();
+console.log(typeof f);
