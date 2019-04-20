@@ -80,3 +80,17 @@ function test1(x, y, a) {
     console.log(arguments[2])
 }
 test1(1, 2, 3);
+//返回字符串字节长度
+var str1 = 'abc ABC 你好';
+function returnBytesLength(str) {
+    var count,
+        len;
+        count = len = str.length;
+    for (var i = 0; i < len; i++) {
+        if (str.charCodeAt([i]) > 255) {
+            count++;
+        }
+    }
+    return count;
+}
+console.log(returnBytesLength(str1))
