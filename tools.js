@@ -94,3 +94,47 @@ Array.prototype.unique = function() {
     }
     return arr;
 }
+//滚动条轮滚动距离
+function getScrollOffset() {
+    if (window.pageXOffset) {
+        return {
+            x: window.pageXOffset,
+            y: window.pageYOffset
+        }
+    } else {
+        return {
+            x: document.body.scrollLeft + document.documentElement.scrollLeft,
+            y: document.body.scrollTop + document.documentElement.scrollTop
+        }
+    }
+}
+//返回浏览器视口尺寸
+// console.log(document.compatMode) //BackCompat(混杂模式) CSS1Compat(标准模式)
+function getViewportOffset() {
+    if(window.innerWidth) {
+        return {
+            w: window.innerWidth,
+            h: window.innerHeight
+        }
+    } else {
+        if (document.compatMode == 'BackCompat') {
+            return {
+                w: document.body.clientWidth,
+                h: document.body.clientHeight
+            }
+        } else {
+            return {
+                w: document.documentElement.clientWidth,
+                h: document.documentElement.clientHeight
+            }
+        }
+    }
+}
+//封装兼容性方法getStyle
+function getStyle(elem, prop) {
+    if(window.getComputedStyle) {
+        return window.getComputedStyle(elem, null)[prop];
+    } else {
+        return  elem.currentStyle[prop];
+    }
+}
