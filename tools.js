@@ -138,3 +138,23 @@ function getStyle(elem, prop) {
         return  elem.currentStyle[prop];
     }
 }
+//封装兼容性的 addEvent(elem, type, handle);方法
+function addEvent(elem, type, handle) {
+    if (elem.addEventListener) {
+        elem.addEventListener(type, handle, false);
+    } else if(elem.attachEvent) {
+        elem.attachEvent('on'+ type, function() {
+            handle.call(elem);
+        })
+    } else {
+        elem['on' + type] = handle;
+    }
+}
+//封装阻止默认事件的函数
+function cancelHandler(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        e.returnValue = false;
+    }
+}
